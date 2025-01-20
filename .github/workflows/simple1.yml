@@ -45,3 +45,5 @@ jobs:
         run: echo environment val = ${{ inputs.env }}
       - name: Print secret and env val from selected environment 
         run: echo secret val = ${{ secrets.SEC_VAR_1 }}, env val = ${{ vars.ENV_VAR_1 }}
+      - name: Print repo secret val 
+        run: echo secret val = ${{ secrets.REPO_SEC_1 }}
