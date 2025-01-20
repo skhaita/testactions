@@ -32,6 +32,7 @@ on:
 jobs:
   print-all:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.env }}
     steps:
       - name: Print choice
         run: echo choice val = ${{ inputs.logLevel }}
