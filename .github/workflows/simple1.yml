@@ -1,0 +1,47 @@
+name: Simple1 with inputs
+
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
+      printTags:
+        description: 'True to print to STDOUT'
+        required: true
+        default: true
+        type: boolean
+      tags:
+        description: 'Test scenario tags - csv'
+        required: true
+        type: string
+      env:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
+      count:
+        description: 'Number input'
+        type: number
+
+jobs:
+  print-all:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print choice
+        run: echo choice val = ${{ inputs.logLevel }}
+      - name: Print boolean
+        run: echo boolean val = ${{ toJSON(inputs.printTags) }}
+      - name: Print string
+        run: echo string val = ${{ inputs.tags }}
+      - name: Print number
+        run: echo number val = ${{ toJSON(inputs.count) }}
+      - name: Print environment
+        run: echo environment val = ${{ inputs.env }}
+      - name: Print secret and env val from selected environment 
+        run: echo secret val = ${{ secrets.SEC_VAR_1 }}, env val = ${{ vars.ENV_VAR_1 }}
