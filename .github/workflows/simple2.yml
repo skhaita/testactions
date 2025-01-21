@@ -1,4 +1,4 @@
-name: Simple2 with inputs
+name: Simple2
 
 on:
   push:
